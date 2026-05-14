@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北市大附小 小一課後社團規劃 — 巫家</title>
+<style>
+  :root {
+    --bg: #fefcf8;
+    --card: #ffffff;
+    --primary: #2c5f7f;
+    --accent: #d97757;
+    --warm: #f4a261;
+    --soft: #e9c46a;
+    --green: #87a96b;
+    --text: #2b2d42;
+    --text-light: #6c757d;
+    --border: #e8e2d5;
+    --hot: #e63946;
+    --cold: #6ab04c;
+    --mid: #f0932b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 16px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    background: linear-gradient(135deg, #fff6e9 0%, #fde4d0 100%);
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  h1 { font-size: 28px; color: var(--primary); margin-bottom: 8px; letter-spacing: 1px; }
+  .sub { font-size: 15px; color: var(--text-light); }
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    margin: 8px 4px 0;
+  }
+  section {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+  }
+  h2 {
+    color: var(--primary);
+    font-size: 21px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h3 { color: var(--accent); font-size: 17px; margin: 18px 0 10px; }
+  p { margin-bottom: 10px; font-size: 15px; }
+
+  .hero-pick {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .pick-card {
+    background: linear-gradient(135deg, #fff 0%, #fdf4e8 100%);
+    border: 2px solid var(--soft);
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+  }
+  .pick-card.dynamic { border-color: var(--accent); }
+  .pick-card.static { border-color: var(--primary); }
+  .pick-rank {
+    position: absolute;
+    top: -10px;
+    left: 14px;
+    background: var(--accent);
+    color: white;
+    padding: 3px 11px;
+    border-radius: 11px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .pick-card .name { font-size: 18px; font-weight: bold; color: var(--primary); margin-bottom: 6px; }
+  .pick-card .meta { font-size: 13px; color: var(--text-light); margin-bottom: 4px; }
+  .pick-card .why { font-size: 13px; margin-top: 8px; color: var(--text); }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    margin: 2px 3px 2px 0;
+  }
+  .tag.hot { background: #ffd8d8; color: var(--hot); }
+  .tag.cool { background: #d8f5d8; color: var(--cold); }
+  .tag.balanced { background: #fef0d8; color: var(--mid); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  th, td { padding: 10px 8px; text-align: center; border: 1px solid var(--border); }
+  th { background: #f7efe0; color: var(--primary); font-weight: 600; }
+  tr:nth-child(even) td { background: #fbf8f1; }
+
+  .timetable {
+    overflow-x: auto;
+    margin-top: 12px;
+  }
+  .timetable table { min-width: 600px; }
+  .slot-club { background: #fcdcc7 !important; font-weight: bold; color: var(--accent); }
+  .slot-club2 { background: #d4e5f0 !important; font-weight: bold; color: var(--primary); }
+  .slot-club3 { background: #e0e8d4 !important; font-weight: bold; color: var(--green); }
+  .slot-care { background: #fbf8f1 !important; color: var(--text-light); }
+  .slot-end { background: var(--soft) !important; color: white; font-weight: bold; }
+
+  ul { padding-left: 20px; margin-bottom: 10px; }
+  li { margin-bottom: 6px; }
+
+  .alert {
+    background: #fff4e6;
+    border-left: 4px solid var(--warm);
+    padding: 14px 16px;
+    border-radius: 6px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .alert-danger {
+    background: #ffeaea;
+    border-left-color: var(--hot);
+  }
+  .alert-good {
+    background: #e8f5e9;
+    border-left-color: var(--cold);
+  }
+
+  .checklist {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    counter-increment: step;
+    padding: 12px 12px 12px 50px;
+    position: relative;
+    margin-bottom: 8px;
+    background: #fdf6ec;
+    border-radius: 8px;
+  }
+  .checklist li::before {
+    content: counter(step);
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent);
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 26px;
+    font-weight: bold;
+    font-size: 13px;
+  }
+  .checklist .date {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 1px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-right: 6px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 13px;
+    padding: 24px 0 16px;
+  }
+  footer a { color: var(--primary); text-decoration: none; }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    .hero-pick { grid-template-columns: 1fr; }
+    section { padding: 18px 14px; }
+    table { font-size: 12px; }
+    th, td { padding: 6px 4px; }
+  }
+
+  .legend {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 4px; }
+  .legend i {
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>🎒 北市大附小 小一課後社團規劃</h1>
+  <div class="sub">115 學年度第 1 學期 · 全留校 12:00 – 17:50 策略</div>
+  <div>
+    <span class="badge">🎯 1 動 1 靜</span>
+    <span class="badge">📅 3 社團 + 2 晚輔</span>
+    <span class="badge">⏰ 17:30~18:30 下班完美接</span>
+  </div>
+</header>
+
+<section>
+  <h2>🥇 Stage-1 必搶 2 個（開搶 21:00 整）</h2>
+  <p>原則：<strong>不搶就絕對沒有、男女皆宜、1 動 1 靜、分兩天、分時段。</strong></p>
+
+  <div class="hero-pick">
+    <div class="pick-card static">
+      <span class="pick-rank">第 1 搶</span>
+      <div class="name">🟦 三 A · 科技磚樂高 EV3</div>
+      <div class="meta">老師：陳宗悅 · 時段 12:50–14:20</div>
+      <div class="meta">招收 1–6 年級 · 額滿狀況 20/20 ★</div>
+      <div>
+        <span class="tag balanced">🧠 靜態益智</span>
+        <span class="tag hot">🔥 必搶</span>
+      </div>
+      <div class="why">午餐後動腦剛好，不會運動傷胃。小一打底邏輯思維、空間感，是學科以外的「全人發展」基礎。</div>
+    </div>
+
+    <div class="pick-card dynamic">
+      <span class="pick-rank">第 2 搶</span>
+      <div class="name">🟧 一 C · 直排輪</div>
+      <div class="meta">老師：陳柏勳/杜之譽 · 時段 16:10–17:40</div>
+      <div class="meta">招收 1–6 年級 · 額滿狀況 30/30 ★</div>
+      <div>
+        <span class="tag hot">🏃 動態運動</span>
+        <span class="tag hot">🔥 必搶</span>
+      </div>
+      <div class="why">傍晚運動發洩白天壓力，回家好睡。直排輪是長線興趣，可從小一玩到畢業，鍛鍊平衡與肌耐力。</div>
+    </div>
+  </div>
+
+  <div class="alert">
+    <strong>📌 為什麼是這 2 個？</strong><br>
+    ✅ 兩個都是 30/30、20/20 完全爆滿（114-2 真實數據） — 不在 Stage-1 搶到，Stage-2 必定無望。<br>
+    ✅ 1 動 1 靜搭配，符合兒童發展平衡原則。<br>
+    ✅ 分散到週一、週三，孩子不會累垮在同一天。<br>
+    ✅ A 段 + C 段不同時段，排程彈性最大。
+  </div>
+</section>
+
+<section>
+  <h2>📅 一週完整時刻表</h2>
+  <div class="timetable">
+    <table>
+      <thead>
+        <tr>
+          <th>時段</th>
+          <th>週一</th>
+          <th>週二</th>
+          <th>週三</th>
+          <th>週四</th>
+          <th>週五</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>12:00–12:45<br>D 午餐</td>
+          <td class="slot-care">午餐照顧</td>
+          <td class="slot-care">午餐照顧</td>
+          <td class="slot-care">午餐照顧</td>
+          <td class="slot-care">午餐照顧</td>
+          <td class="slot-care">午餐照顧</td>
+        </tr>
+        <tr>
+          <td>12:50–14:20<br>A 時段</td>
+          <td class="slot-care">課輔</td>
+          <td class="slot-care">課輔</td>
+          <td class="slot-club">🟦 樂高 EV3</td>
+          <td class="slot-care">課輔</td>
+          <td class="slot-care">課輔</td>
+        </tr>
+        <tr>
+          <td>14:30–16:00<br>B 時段</td>
+          <td class="slot-care">課輔</td>
+          <td class="slot-care">課輔</td>
+          <td class="slot-care">課輔</td>
+          <td class="slot-care">課輔</td>
+          <td class="slot-care">課輔</td>
+        </tr>
+        <tr>
+          <td>16:10–17:40<br>C 時段 / 晚輔</td>
+          <td class="slot-club">🟧 直排輪</td>
+          <td class="slot-care">晚輔</td>
+          <td class="slot-care">晚輔</td>
+          <td class="slot-club3">🟩 弦樂 / 西洋棋<br><small>(Stage-2 撿)</small></td>
+          <td class="slot-care">晚輔</td>
+        </tr>
+        <tr>
+          <td>放學時間</td>
+          <td class="slot-end">17:40</td>
+          <td class="slot-end">17:50</td>
+          <td class="slot-end">17:50</td>
+          <td class="slot-end">17:40</td>
+          <td class="slot-end">17:50</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="legend">
+      <span><i style="background:#fcdcc7"></i> Stage-1 必搶</span>
+      <span><i style="background:#d4e5f0"></i> Stage-1 必搶</span>
+      <span><i style="background:#e0e8d4"></i> Stage-2 撿剩</span>
+      <span><i style="background:#fbf8f1"></i> 課輔 / 晚輔</span>
+      <span><i style="background:#e9c46a"></i> 放學時間</span>
+    </div>
+  </div>
+
+  <div class="alert alert-good">
+    🌟 <strong>節奏設計：</strong>3 天有社團（一、三、四）+ 2 天純晚輔休息（二、五）。每天最後一個項目都在 17:40 或 17:50 結束，家長 17:30~18:30 下班直接接，零等待。
+  </div>
+</section>
+
+<section>
+  <h2>🎯 Stage-2 補位策略（12/24 ~ 12/29 撿剩）</h2>
+  <p>Stage-1 搶完 2 個後，再撿 <strong>1 個</strong>就好，留 2 天純晚輔讓孩子適應。優先順序：</p>
+  <table>
+    <thead>
+      <tr><th>排序</th><th>社團</th><th>時段</th><th>114-2 剩餘</th><th>屬性</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>三 C 弦樂</td><td>16:10–17:40</td><td>剩 4</td><td>🎻 樂器啟蒙</td></tr>
+      <tr><td>2</td><td>四 C 西洋棋</td><td>16:10–17:40</td><td>剩 5</td><td>♟️ 動腦</td></tr>
+      <tr><td>3</td><td>二 C 合唱</td><td>16:10–17:40</td><td>剩 3</td><td>🎤 群體</td></tr>
+      <tr><td>4</td><td>五 C 圍棋精英</td><td>16:10–17:40</td><td>剩 7</td><td>🟫 動腦</td></tr>
+      <tr><td>5</td><td>五 C 空手道</td><td>16:10–17:40</td><td>剩 7</td><td>🥋 體能</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>🚨 風險與 Plan B</h2>
+  <h3>若 Stage-1 沒搶到怎麼辦？</h3>
+  <table>
+    <thead><tr><th>搶不到</th><th>立刻改搶（同性質替代）</th></tr></thead>
+    <tbody>
+      <tr><td>三 A 樂高 ❌</td><td>三 A CM 魔法大師 / 五 A 圍棋 / 五 A 圍棋晉階</td></tr>
+      <tr><td>一 C 直排輪 ❌</td><td>二 C 跳繩初階 / 三 C 羽球 / 一 C 國術</td></tr>
+      <tr><td>雙雙失利</td><td>Stage-2 鎖 三 C 弦樂 + 四 C 西洋棋 當基本盤</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🚦 第一學期觀察期 — 隨時可調整</h3>
+  <div class="alert alert-danger">
+    <strong>9 ~ 10 月密切觀察：</strong><br>
+    🔴 早上起不來、抗拒上學、頻繁喊累 → 立刻砍 1 個社團<br>
+    🟢 適應良好、回家有精神講今天上什麼 → 第二學期可加碼到 3-4 個
+  </div>
+</section>
+
+<section>
+  <h2>✅ 開搶行動清單</h2>
+  <ol class="checklist">
+    <li><span class="date">8/25 ~ 9/1</span>登入 ecampus 確認 115-1 系統開放、確認小一新生帳號可登入（身分證號碼為預設帳密）</li>
+    <li><span class="date">12 月中</span>等學校公告 Stage-1 開搶時間（依 114 學年慣例為 12/22 晚 21:00）</li>
+    <li><span class="date">開搶前 30 分</span>登入系統、把「三 A 樂高 EV3」和「一 C 直排輪」頁面預先打開兩個瀏覽器分頁</li>
+    <li><span class="date">21:00 整</span>手機 + 電腦同時開兩個分頁，倒數秒針一到立刻送出（差 2 秒就可能被刷掉）</li>
+    <li><span class="date">12/24 ~ 12/29</span>Stage-2 登入看剩下名單，撿 1 個 C 段冷門靜態社團（弦樂 / 西洋棋優先）</li>
+    <li><span class="date">1/6 ~ 1/12</span>繳費期限（逾期視同放棄報名，無法挽回）</li>
+  </ol>
+</section>
+
+<section>
+  <h2>📊 系統重要數據參考</h2>
+  <ul>
+    <li><strong>小一可選社團總數</strong>：42 個（114-2 實際開課）</li>
+    <li><strong>放學時間</strong>：A 段 14:20 / B 段 16:00 / <strong>C 段 17:40</strong> / <strong>晚輔 17:50</strong></li>
+    <li><strong>聯絡電話</strong>：(02) 2311-0395 轉 825 或 827（學務處課外活動組）</li>
+    <li><strong>報名系統</strong>：<a href="https://ecampus.com.tw/Index/AnnShow/16" target="_blank">ecampus.com.tw</a></li>
+  </ul>
+</section>
+
+<footer>
+  <p>本規劃以 114-2 學期真實報名數據為基礎，115-1 可能略有變動，請以學校最新公告為準。</p>
+  <p>製作日期：2026 / 05 · 為 巫家小一新生量身打造 🐣</p>
+</footer>
+
+</div>
+</body>
+</html>
