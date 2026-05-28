@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北市大附小 小一課後社團規劃 — 巫家</title>
+<title>北市大附小 小一課後社團規劃 — 巫家完整版</title>
 <style>
   :root {
     --bg: #fefcf8;
@@ -28,7 +28,7 @@
     line-height: 1.7;
     padding: 16px;
   }
-  .wrap { max-width: 980px; margin: 0 auto; }
+  .wrap { max-width: 1000px; margin: 0 auto; }
   header {
     text-align: center;
     padding: 40px 20px 30px;
@@ -55,6 +55,7 @@
     margin-bottom: 18px;
     box-shadow: 0 1px 8px rgba(0,0,0,0.04);
     border: 1px solid var(--border);
+    scroll-margin-top: 16px;
   }
   h2 {
     color: var(--primary);
@@ -67,8 +68,69 @@
     gap: 8px;
   }
   h3 { color: var(--accent); font-size: 17px; margin: 18px 0 10px; }
+  h4 { color: var(--primary); font-size: 15px; margin: 14px 0 6px; }
   p { margin-bottom: 10px; font-size: 15px; }
 
+  /* TOC */
+  .toc {
+    background: linear-gradient(135deg, #fff7ea 0%, #fdeed4 100%);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 22px;
+    border: 1px solid var(--soft);
+  }
+  .toc-title {
+    color: var(--primary);
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 6px;
+  }
+  .toc-list li { margin: 0; padding: 0; }
+  .toc-list a {
+    display: block;
+    padding: 6px 10px;
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+  .toc-list a:hover { background: rgba(217,119,87,0.15); }
+
+  /* TLDR */
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .tldr-card {
+    background: #fff8ec;
+    border: 2px solid var(--soft);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .tldr-card .num {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--accent);
+    line-height: 1.2;
+  }
+  .tldr-card .label {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* Pick cards */
   .hero-pick {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -95,9 +157,11 @@
     font-size: 12px;
     font-weight: bold;
   }
-  .pick-card .name { font-size: 18px; font-weight: bold; color: var(--primary); margin-bottom: 6px; }
+  .pick-card .name { font-size: 17px; font-weight: bold; color: var(--primary); margin-bottom: 6px; }
   .pick-card .meta { font-size: 13px; color: var(--text-light); margin-bottom: 4px; }
   .pick-card .why { font-size: 13px; margin-top: 8px; color: var(--text); }
+
+  /* Tags */
   .tag {
     display: inline-block;
     padding: 2px 8px;
@@ -108,7 +172,11 @@
   .tag.hot { background: #ffd8d8; color: var(--hot); }
   .tag.cool { background: #d8f5d8; color: var(--cold); }
   .tag.balanced { background: #fef0d8; color: var(--mid); }
+  .tag.star3 { background: #ffe2d5; color: var(--hot); font-weight:bold; }
+  .tag.star2 { background: #fff0db; color: var(--mid); font-weight:bold; }
+  .tag.star1 { background: #f0f0f0; color: var(--text-light); }
 
+  /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -118,21 +186,34 @@
   th, td { padding: 10px 8px; text-align: center; border: 1px solid var(--border); }
   th { background: #f7efe0; color: var(--primary); font-weight: 600; }
   tr:nth-child(even) td { background: #fbf8f1; }
+  td.left { text-align: left; }
 
-  .timetable {
-    overflow-x: auto;
-    margin-top: 12px;
+  .pick-row td { background: #fcebdc !important; font-weight: 600; }
+  .day-head td {
+    background: #f0e3c8 !important;
+    font-weight: bold;
+    color: var(--primary);
+    text-align: left;
   }
+  .priority-3 td { background: #ffe8e0 !important; }
+  .priority-2 td { background: #fff4e6 !important; }
+  .priority-1 td { background: #f8f8f8 !important; }
+
+  /* Timetable */
+  .timetable { overflow-x: auto; margin-top: 12px; }
   .timetable table { min-width: 600px; }
   .slot-club { background: #fcdcc7 !important; font-weight: bold; color: var(--accent); }
   .slot-club2 { background: #d4e5f0 !important; font-weight: bold; color: var(--primary); }
   .slot-club3 { background: #e0e8d4 !important; font-weight: bold; color: var(--green); }
+  .slot-club4 { background: #ead4ee !important; font-weight: bold; color: #7e4090; }
+  .slot-eng { background: #ffe6c2 !important; font-weight: bold; color: #c46a1f; }
   .slot-care { background: #fbf8f1 !important; color: var(--text-light); }
   .slot-end { background: var(--soft) !important; color: white; font-weight: bold; }
 
   ul { padding-left: 20px; margin-bottom: 10px; }
   li { margin-bottom: 6px; }
 
+  /* Alerts */
   .alert {
     background: #fff4e6;
     border-left: 4px solid var(--warm);
@@ -141,20 +222,12 @@
     margin: 14px 0;
     font-size: 14px;
   }
-  .alert-danger {
-    background: #ffeaea;
-    border-left-color: var(--hot);
-  }
-  .alert-good {
-    background: #e8f5e9;
-    border-left-color: var(--cold);
-  }
+  .alert-danger { background: #ffeaea; border-left-color: var(--hot); }
+  .alert-good { background: #e8f5e9; border-left-color: var(--cold); }
+  .alert-info { background: #e3f1f7; border-left-color: var(--primary); }
 
-  .checklist {
-    counter-reset: step;
-    list-style: none;
-    padding: 0;
-  }
+  /* Checklist */
+  .checklist { counter-reset: step; list-style: none; padding: 0; }
   .checklist li {
     counter-increment: step;
     padding: 12px 12px 12px 50px;
@@ -189,6 +262,94 @@
     margin-right: 6px;
   }
 
+  /* Phone script */
+  .phone-script {
+    background: #f0f7fa;
+    border: 1px dashed var(--primary);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .phone-script .speaker { font-weight: bold; color: var(--primary); }
+  .phone-script ol { padding-left: 22px; margin: 8px 0 0; }
+
+  /* Kid dialog */
+  .kid-dialog {
+    background: #fff8ec;
+    border-left: 4px solid var(--soft);
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .kid-dialog strong { color: var(--accent); }
+
+  /* Category grid */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .category-card {
+    background: #fdf6ec;
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid var(--border);
+  }
+  .category-card .cat-title {
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  .category-card ul {
+    padding-left: 18px;
+    font-size: 13px;
+    margin: 0;
+  }
+  .category-card li { margin-bottom: 3px; }
+
+  /* Scenario block */
+  .scenario-block {
+    margin: 14px 0;
+    padding: 14px;
+    background: #faf8f3;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .scenario-block h4 {
+    color: var(--accent);
+    font-size: 15px;
+    margin: 0 0 8px;
+  }
+  .scenario-block .summary {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+
+  /* Details/Summary */
+  details {
+    margin-top: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 12px 14px;
+    background: #faf4e8;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▸ "; color: var(--accent); }
+  details[open] summary::before { content: "▾ "; }
+  details .detail-body { padding: 4px 14px 14px; }
+
   footer {
     text-align: center;
     color: var(--text-light);
@@ -215,199 +376,611 @@
     gap: 10px;
   }
   .legend span { display: inline-flex; align-items: center; gap: 4px; }
-  .legend i {
-    width: 16px;
-    height: 12px;
-    display: inline-block;
-    border-radius: 3px;
-  }
+  .legend i { width: 16px; height: 12px; display: inline-block; border-radius: 3px; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
-  <h1>🎒 北市大附小 小一課後社團規劃</h1>
-  <div class="sub">115 學年度第 1 學期 · 全留校 12:00 – 17:50 策略</div>
+  <h1>🎒 北市大附小 小一課後社團規劃 — 完整版</h1>
+  <div class="sub">115 學年度第 1 學期 · 孩子（小一新生）· 4 社團 + 課輔策略</div>
   <div>
-    <span class="badge">🎯 1 動 1 靜</span>
-    <span class="badge">📅 3 社團 + 2 晚輔</span>
-    <span class="badge">⏰ 17:30~18:30 下班完美接</span>
+    <span class="badge">🎯 4 個社團</span>
+    <span class="badge">📅 6/9 開搶</span>
+    <span class="badge">⏰ 1 動 1 靜</span>
+    <span class="badge">💰 預算 9,550 ~ 17,200</span>
   </div>
 </header>
 
-<section>
-  <h2>🥇 Stage-1 必搶 2 個（開搶 21:00 整）</h2>
-  <p>原則：<strong>不搶就絕對沒有、男女皆宜、1 動 1 靜、分兩天、分時段。</strong></p>
+<!-- TOC -->
+<nav class="toc">
+  <div class="toc-title">📑 目錄（點擊跳轉）</div>
+  <ul class="toc-list">
+    <li><a href="#tldr">📋 1. 一頁式總覽</a></li>
+    <li><a href="#timeline">⏰ 2. 報名時程</a></li>
+    <li><a href="#strategy">🎯 3. 4 社團策略</a></li>
+    <li><a href="#stage1">🥇 4. 第一階段必搶候選</a></li>
+    <li><a href="#stage2">🎯 5. 第二階段補位候選</a></li>
+    <li><a href="#scenarios">📅 6. 三個範例排程</a></li>
+    <li><a href="#cost">💰 7. 費用試算</a></li>
+    <li><a href="#double-day">🤹 8. 雙日課特別說明</a></li>
+    <li><a href="#english">🔤 9. 英語課深度分析</a></li>
+    <li><a href="#phone">📞 10. 課外組電話腳本</a></li>
+    <li><a href="#kid-talk">👧 11. 跟孩子的對話</a></li>
+    <li><a href="#risk">🚨 12. 風險 / Plan B</a></li>
+    <li><a href="#full-list">📋 13. 可報 41 社團全表</a></li>
+    <li><a href="#not-eligible">🚫 14. 不可報 23 個</a></li>
+    <li><a href="#action">✅ 15. 開搶行動清單</a></li>
+    <li><a href="#data">📊 16. 系統重要數據</a></li>
+  </ul>
+</nav>
 
-  <div class="hero-pick">
-    <div class="pick-card static">
-      <span class="pick-rank">第 1 搶</span>
-      <div class="name">🟦 三 A · 科技磚樂高 EV3</div>
-      <div class="meta">老師：陳宗悅 · 時段 12:50–14:20</div>
-      <div class="meta">招收 1–6 年級 · 額滿狀況 20/20 ★</div>
-      <div>
-        <span class="tag balanced">🧠 靜態益智</span>
-        <span class="tag hot">🔥 必搶</span>
-      </div>
-      <div class="why">午餐後動腦剛好，不會運動傷胃。小一打底邏輯思維、空間感，是學科以外的「全人發展」基礎。</div>
-    </div>
-
-    <div class="pick-card dynamic">
-      <span class="pick-rank">第 2 搶</span>
-      <div class="name">🟧 一 C · 直排輪</div>
-      <div class="meta">老師：陳柏勳/杜之譽 · 時段 16:10–17:40</div>
-      <div class="meta">招收 1–6 年級 · 額滿狀況 30/30 ★</div>
-      <div>
-        <span class="tag hot">🏃 動態運動</span>
-        <span class="tag hot">🔥 必搶</span>
-      </div>
-      <div class="why">傍晚運動發洩白天壓力，回家好睡。直排輪是長線興趣，可從小一玩到畢業，鍛鍊平衡與肌耐力。</div>
-    </div>
+<!-- 1. TLDR -->
+<section id="tldr">
+  <h2>📋 1. 一頁式總覽（TL;DR）</h2>
+  <div class="tldr-grid">
+    <div class="tldr-card"><div class="num">4</div><div class="label">社團總數</div></div>
+    <div class="tldr-card"><div class="num">2 + 2</div><div class="label">第一階段 + 第二階段</div></div>
+    <div class="tldr-card"><div class="num">5</div><div class="label">課輔/晚輔格數</div></div>
+    <div class="tldr-card"><div class="num">6/9</div><div class="label">開搶日（週二 21:00）</div></div>
+    <div class="tldr-card"><div class="num">~14k</div><div class="label">推薦組合預算</div></div>
   </div>
-
-  <div class="alert">
-    <strong>📌 為什麼是這 2 個？</strong><br>
-    ✅ 兩個都是 30/30、20/20 完全爆滿（114-2 真實數據） — 不在 Stage-1 搶到，Stage-2 必定無望。<br>
-    ✅ 1 動 1 靜搭配，符合兒童發展平衡原則。<br>
-    ✅ 分散到週一、週三，孩子不會累垮在同一天。<br>
-    ✅ A 段 + C 段不同時段，排程彈性最大。
-  </div>
-</section>
-
-<section>
-  <h2>📅 一週完整時刻表</h2>
-  <div class="timetable">
-    <table>
-      <thead>
-        <tr>
-          <th>時段</th>
-          <th>週一</th>
-          <th>週二</th>
-          <th>週三</th>
-          <th>週四</th>
-          <th>週五</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>12:00–12:45<br>D 午餐</td>
-          <td class="slot-care">午餐照顧</td>
-          <td class="slot-care">午餐照顧</td>
-          <td class="slot-care">午餐照顧</td>
-          <td class="slot-care">午餐照顧</td>
-          <td class="slot-care">午餐照顧</td>
-        </tr>
-        <tr>
-          <td>12:50–14:20<br>A 時段</td>
-          <td class="slot-care">課輔</td>
-          <td class="slot-care">課輔</td>
-          <td class="slot-club">🟦 樂高 EV3</td>
-          <td class="slot-care">課輔</td>
-          <td class="slot-care">課輔</td>
-        </tr>
-        <tr>
-          <td>14:30–16:00<br>B 時段</td>
-          <td class="slot-care">課輔</td>
-          <td class="slot-care">課輔</td>
-          <td class="slot-care">課輔</td>
-          <td class="slot-care">課輔</td>
-          <td class="slot-care">課輔</td>
-        </tr>
-        <tr>
-          <td>16:10–17:40<br>C 時段 / 晚輔</td>
-          <td class="slot-club">🟧 直排輪</td>
-          <td class="slot-care">晚輔</td>
-          <td class="slot-care">晚輔</td>
-          <td class="slot-club3">🟩 弦樂 / 西洋棋<br><small>(Stage-2 撿)</small></td>
-          <td class="slot-care">晚輔</td>
-        </tr>
-        <tr>
-          <td>放學時間</td>
-          <td class="slot-end">17:40</td>
-          <td class="slot-end">17:50</td>
-          <td class="slot-end">17:50</td>
-          <td class="slot-end">17:40</td>
-          <td class="slot-end">17:50</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="legend">
-      <span><i style="background:#fcdcc7"></i> Stage-1 必搶</span>
-      <span><i style="background:#d4e5f0"></i> Stage-1 必搶</span>
-      <span><i style="background:#e0e8d4"></i> Stage-2 撿剩</span>
-      <span><i style="background:#fbf8f1"></i> 課輔 / 晚輔</span>
-      <span><i style="background:#e9c46a"></i> 放學時間</span>
-    </div>
-  </div>
-
-  <div class="alert alert-good">
-    🌟 <strong>節奏設計：</strong>3 天有社團（一、三、四）+ 2 天純晚輔休息（二、五）。每天最後一個項目都在 17:40 或 17:50 結束，家長 17:30~18:30 下班直接接，零等待。
+  <div class="alert alert-info">
+    <strong>核心策略</strong>：第一階段 6/9 21:00 搶 <strong>2 個「不搶就沒」</strong>的（限低年級 / 小班 / 熱門），第二階段 6/12 21:00 補 <strong>2 個</strong>當基本盤。<br>
+    剩下 5 格全留校 = 課輔／晚輔。9~10 月觀察期再決定是否加減。
   </div>
 </section>
 
-<section>
-  <h2>🎯 Stage-2 補位策略（12/24 ~ 12/29 撿剩）</h2>
-  <p>Stage-1 搶完 2 個後，再撿 <strong>1 個</strong>就好，留 2 天純晚輔讓孩子適應。優先順序：</p>
+<!-- 2. Timeline -->
+<section id="timeline">
+  <h2>⏰ 2. 報名時程（依官方簡章）</h2>
+  <div class="alert alert-danger">
+    <strong>📌 注意：報名是 6 月，不是 12 月！</strong><br>
+    時程依學校官方簡章（2026/05/21 更新）校正。第一階段 <strong>6/9（二）21:00 開放</strong>。
+  </div>
+  <table>
+    <thead><tr><th>階段</th><th>時間</th><th>重點</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>第一階段報名</strong></td>
+        <td>6/9（二）21:00<br>~ 6/11（四）20:59</td>
+        <td class="left">全校開放，<strong>每人最多報 2 項</strong></td>
+      </tr>
+      <tr>
+        <td>第二階段報名</td>
+        <td>6/12（四）21:00<br>~ 6/18（四）21:00</td>
+        <td class="left">報其他「尚有名額」社團，補第 3、第 4 個</td>
+      </tr>
+      <tr>
+        <td>開班公告</td>
+        <td>6/22（一）</td>
+        <td class="left">學校首頁公告確定開班 / 未達開班下限（停開）社團</td>
+      </tr>
+      <tr>
+        <td><strong>繳費期限</strong></td>
+        <td>6/25（四）~ 7/3（五）</td>
+        <td class="left">逾期未繳＝視同放棄，自動釋出名額</td>
+      </tr>
+      <tr>
+        <td>第三階段候補</td>
+        <td>6/26（五）21:00 起</td>
+        <td class="left">至學校首頁填候補 Google 表單（每填一項=一份表單）</td>
+      </tr>
+      <tr>
+        <td>候補通知</td>
+        <td>預計 7/15（三）起</td>
+        <td class="left">電話 / Email 通知，公告後 3 日內至課外組現金繳費才算候補成功</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>📋 報名須知（小一新生家長特別注意）</h3>
+  <ul>
+    <li><strong>錄取方式：依報名先後順序錄取</strong>，期限內繳費才算完成。</li>
+    <li>第一階段每人最多 2 項；第 3、第 4 個社團要等 6/12 第二階段補報。</li>
+    <li><strong>小一新生在系統上顯示為「0 年級」</strong>（尚未編班），登入後看到的社團皆為可選擇。</li>
+    <li><strong>小一新生家長無電子繳費通知，請到課外組領取紙本繳費單。</strong></li>
+    <li>報名連結：學校首頁 →【學生專區】→【學務處相關報名與繳費系統】（課後照顧班與社團同一連結）。</li>
+    <li>課後照顧班報名期程同樣是 6/9（二）~ 6/18（四），別忘了一併處理。</li>
+    <li>社團費用<strong>不含營養午餐費</strong>，如需訂餐請另外網路訂餐繳費。</li>
+    <li>繳費截止：超商至 23:59；富邦臨櫃 / ATM / 網路銀行至 15:30。</li>
+  </ul>
+</section>
+
+<!-- 3. Strategy -->
+<section id="strategy">
+  <h2>🎯 3. 4 社團策略總覽</h2>
+  <p>孩子全留校（12:00–17:50），一週有 15 個 90 分鐘時段格子，但其中 <strong>6 個時段（週一二四的 A/B 段）全校都不開社團</strong>，只剩 <strong>9 個格子可放社團</strong>。</p>
+
   <table>
     <thead>
-      <tr><th>排序</th><th>社團</th><th>時段</th><th>114-2 剩餘</th><th>屬性</th></tr>
+      <tr><th>時段\星期</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th></tr>
     </thead>
     <tbody>
-      <tr><td>1</td><td>三 C 弦樂</td><td>16:10–17:40</td><td>剩 4</td><td>🎻 樂器啟蒙</td></tr>
-      <tr><td>2</td><td>四 C 西洋棋</td><td>16:10–17:40</td><td>剩 5</td><td>♟️ 動腦</td></tr>
-      <tr><td>3</td><td>二 C 合唱</td><td>16:10–17:40</td><td>剩 3</td><td>🎤 群體</td></tr>
-      <tr><td>4</td><td>五 C 圍棋精英</td><td>16:10–17:40</td><td>剩 7</td><td>🟫 動腦</td></tr>
-      <tr><td>5</td><td>五 C 空手道</td><td>16:10–17:40</td><td>剩 7</td><td>🥋 體能</td></tr>
+      <tr><td>A 12:50-14:20</td><td>—</td><td>—</td><td>✅ 6 選</td><td>—</td><td>✅ 7 選</td></tr>
+      <tr><td>B 14:30-16:00</td><td>—</td><td>—</td><td>✅ 4 選</td><td>—</td><td>✅ 6 選</td></tr>
+      <tr><td>C 16:10-17:40</td><td>✅ 2 選</td><td>✅ 4 選</td><td>✅ 3 選</td><td>✅ 5 選</td><td>✅ 3 選</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--text-light);margin-top:6px;">數字＝該格孩子（小一）可選的社團數。「—」＝學校沒開任何社團，只能課輔。</p>
+
+  <h3>為什麼選 4 個剛剛好？</h3>
+  <ul>
+    <li><strong>2-3 個太少</strong>：浪費可報名額，學期中想補也來不及。</li>
+    <li><strong>4 個剛好</strong>：3 動／靜搭配 1 個興趣探索，每週 4 天有社團 1 天純休息。</li>
+    <li><strong>5-9 個太多</strong>：費用爆到 2~3 萬、每天 17:40 才下課、小一容易適應不良。</li>
+  </ul>
+
+  <h3>4 社團的分配原則</h3>
+  <ol>
+    <li><strong>1 動 + 1 靜</strong>：動的發洩體力，靜的養專注力。</li>
+    <li><strong>第一階段先搶「不搶就沒」的 2 個</strong>：限低年級的、小班的、熱門的。</li>
+    <li><strong>第二階段補「Stage-2 還有機會」的 2 個</strong>：大班的、中等熱門的。</li>
+    <li><strong>避開同一天集中</strong>：分散到 3-4 天，給孩子喘息。</li>
+  </ol>
+</section>
+
+<!-- 4. Stage 1 -->
+<section id="stage1">
+  <h2>🥇 4. 第一階段必搶候選池</h2>
+  <p>第一階段最多 2 項，從以下 11 個候選中挑 <strong>2 個</strong>。<span class="tag star3">⭐⭐⭐</span> 最優先 → <span class="tag star1">⭐</span> 次優先。</p>
+
+  <table>
+    <thead>
+      <tr><th>推薦度</th><th>編號</th><th>社團</th><th>時段</th><th>上限</th><th>費用</th><th>為什麼必搶</th></tr>
+    </thead>
+    <tbody>
+      <tr class="priority-3"><td>⭐⭐⭐</td><td>15</td><td class="left">科技磚樂高 EV3</td><td>三 A</td><td>20</td><td>4,750</td><td class="left"><strong>限 1-3 年級</strong>，小一是黃金期；之後只能改 4-6 年級組</td></tr>
+      <tr class="priority-3"><td>⭐⭐⭐</td><td>64</td><td class="left">英語基礎字彙</td><td>三+五 B（雙日）</td><td>22</td><td>7,850</td><td class="left"><strong>限 1-2 年級</strong>，小一不報只剩明年小二一次機會</td></tr>
+      <tr class="priority-3"><td>⭐⭐⭐</td><td>33</td><td class="left">弦樂</td><td>三 C</td><td>10</td><td>5,200</td><td class="left"><strong>上限只 10 人</strong>，樂器類最容易秒殺</td></tr>
+      <tr class="priority-3"><td>⭐⭐⭐</td><td>6</td><td class="left">二胡</td><td>二 C</td><td>10</td><td>3,150</td><td class="left"><strong>上限只 10 人</strong>，小班易滿</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>2</td><td class="left">直排輪</td><td>一 C</td><td>24</td><td>2,400</td><td class="left">熱門終身運動，大班但搶手，CP 值高</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>16</td><td class="left">美術創作</td><td>三 A</td><td>16</td><td>3,750</td><td class="left"><strong>限 1-3 年級</strong></td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>14</td><td class="left">芭蕾舞</td><td>三 A</td><td>12</td><td>4,100</td><td class="left">小班（12），女生熱門</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>29</td><td class="left">樂活足球（1-3 組）</td><td>三 B</td><td>15</td><td>2,650</td><td class="left">1-3 年級分組，小班</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>49</td><td class="left">樂活足球 五A</td><td>五 A</td><td>15</td><td>1,800</td><td class="left"><strong>限 1-3 年級</strong>，費用最低</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>50</td><td class="left">MV 街舞</td><td>五 B</td><td>25</td><td>2,300</td><td class="left"><strong>限 1-3 年級</strong>，大班但熱門</td></tr>
+      <tr class="priority-1"><td>⭐</td><td>26</td><td class="left">STEM 創意科研社</td><td>三 B</td><td>20</td><td>5,350</td><td class="left">1-6 年級，STEM 熱門但 Stage-2 可能還有</td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert">
+    💡 <strong>挑選提示</strong>：從 ⭐⭐⭐ 4 個裡盡量挑 2 個（最不可逆）；若孩子都不感興趣，再從 ⭐⭐ 挑。同時段（如三A）的可以替換選一個。
+  </div>
+</section>
+
+<!-- 5. Stage 2 -->
+<section id="stage2">
+  <h2>🎯 5. 第二階段補位候選池</h2>
+  <p>第二階段 6/12 ~ 6/18，從以下 8 個中挑 <strong>2 個</strong>當第 3、第 4 個社團。優先「中等熱門度」當基本盤，Stage-2 開放時還有機會搶到。</p>
+
+  <table>
+    <thead>
+      <tr><th>推薦度</th><th>編號</th><th>社團</th><th>時段</th><th>上限</th><th>費用</th><th>屬性</th></tr>
+    </thead>
+    <tbody>
+      <tr class="priority-3"><td>⭐⭐⭐</td><td>41</td><td class="left">西洋棋</td><td>四 C</td><td>14</td><td>2,200</td><td>♟️ 動腦，週四唯一靜態好選擇</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>11</td><td class="left">魔術大師</td><td>三 A</td><td>20</td><td>3,100</td><td>🎩 才藝，1-6 年級</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>46</td><td class="left">圍棋（啟蒙）</td><td>五 A</td><td>15</td><td>2,700</td><td>⚫ 動腦，1-4 年級</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>54</td><td class="left">圍棋（啟蒙）</td><td>五 B</td><td>15</td><td>2,300</td><td>⚫ 動腦，1-4 年級</td></tr>
+      <tr class="priority-2"><td>⭐⭐</td><td>7</td><td class="left">象棋</td><td>二 C</td><td>16</td><td>2,100</td><td>♟️ 動腦，費用低</td></tr>
+      <tr class="priority-1"><td>⭐</td><td>5</td><td class="left">合唱</td><td>二 C</td><td>30</td><td>3,150</td><td>🎵 大班易進</td></tr>
+      <tr class="priority-1"><td>⭐</td><td>9</td><td class="left">跳繩-初階</td><td>二 C</td><td>30</td><td>2,750</td><td>🏃 動，大班易進</td></tr>
+      <tr class="priority-1"><td>⭐</td><td>37</td><td class="left">空手道</td><td>四 C</td><td>24</td><td>3,100</td><td>🥋 動，大班易進</td></tr>
     </tbody>
   </table>
 </section>
 
-<section>
-  <h2>🚨 風險與 Plan B</h2>
-  <h3>若 Stage-1 沒搶到怎麼辦？</h3>
+<!-- 6. Scenarios -->
+<section id="scenarios">
+  <h2>📅 6. 三個範例排程</h2>
+  <p>每個範例都是 4 個社團 + 課輔，差別在於選課方向。</p>
+
+  <div class="scenario-block">
+    <h4>範例 A：均衡組合（1 動 1 靜 1 益智 1 樂器）— 推薦</h4>
+    <div class="summary">第一階段：#15 樂高 + #33 弦樂 ｜ 第二階段：#2 直排輪 + #41 西洋棋 ｜ 費用 14,550</div>
+    <div class="timetable">
+      <table>
+        <thead><tr><th>時段</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th></tr></thead>
+        <tbody>
+          <tr><td>D 12:00-12:45</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td></tr>
+          <tr><td>A 12:50-14:20</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-club2">🟦 #15 樂高</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td></tr>
+          <tr><td>B 14:30-16:00</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td></tr>
+          <tr><td>C 16:10-17:40</td><td class="slot-club">🟧 #2 直排輪</td><td class="slot-care">晚輔</td><td class="slot-club3">🟩 #33 弦樂</td><td class="slot-club4">🟪 #41 西洋棋</td><td class="slot-care">晚輔</td></tr>
+          <tr><td>放學</td><td class="slot-end">17:40</td><td class="slot-end">17:50</td><td class="slot-end">17:40</td><td class="slot-end">17:40</td><td class="slot-end">17:50</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <h4>範例 B：含英語雙日課（限 1-2 年級限時優惠）</h4>
+    <div class="summary">第一階段：#15 樂高 + #64 英語 ｜ 第二階段：#2 直排輪 + #41 西洋棋 ｜ 費用 17,200 ｜ 英語占 2 格</div>
+    <div class="timetable">
+      <table>
+        <thead><tr><th>時段</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th></tr></thead>
+        <tbody>
+          <tr><td>D 12:00-12:45</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td></tr>
+          <tr><td>A 12:50-14:20</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-club2">🟦 #15 樂高</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td></tr>
+          <tr><td>B 14:30-16:00</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-eng">🔤 #64 英語</td><td class="slot-care">課輔</td><td class="slot-eng">🔤 #64 英語</td></tr>
+          <tr><td>C 16:10-17:40</td><td class="slot-club">🟧 #2 直排輪</td><td class="slot-care">晚輔</td><td class="slot-care">晚輔</td><td class="slot-club4">🟪 #41 西洋棋</td><td class="slot-care">晚輔</td></tr>
+          <tr><td>放學</td><td class="slot-end">17:40</td><td class="slot-end">17:50</td><td class="slot-end">17:50</td><td class="slot-end">17:40</td><td class="slot-end">17:50</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <h4>範例 C：純運動 + 益智（孩子對藝術沒興趣時）</h4>
+    <div class="summary">第一階段：#2 直排輪 + #34 樂活足球 ｜ 第二階段：#7 象棋 + #41 西洋棋 ｜ 費用 9,550（最便宜）</div>
+    <div class="timetable">
+      <table>
+        <thead><tr><th>時段</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th></tr></thead>
+        <tbody>
+          <tr><td>D 12:00-12:45</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td><td class="slot-care">午餐照顧</td></tr>
+          <tr><td>A 12:50-14:20</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td></tr>
+          <tr><td>B 14:30-16:00</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td><td class="slot-care">課輔</td></tr>
+          <tr><td>C 16:10-17:40</td><td class="slot-club">🟧 #2 直排輪</td><td class="slot-club2">🟦 #7 象棋</td><td class="slot-club3">🟩 #34 足球</td><td class="slot-club4">🟪 #41 西洋棋</td><td class="slot-care">晚輔</td></tr>
+          <tr><td>放學</td><td class="slot-end">17:40</td><td class="slot-end">17:40</td><td class="slot-end">17:40</td><td class="slot-end">17:40</td><td class="slot-end">17:50</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i style="background:#fcdcc7"></i> 動態運動</span>
+    <span><i style="background:#d4e5f0"></i> STEM／益智</span>
+    <span><i style="background:#e0e8d4"></i> 音樂／樂器</span>
+    <span><i style="background:#ead4ee"></i> 棋類動腦</span>
+    <span><i style="background:#ffe6c2"></i> 英語雙日</span>
+    <span><i style="background:#fbf8f1"></i> 課輔／晚輔</span>
+    <span><i style="background:#e9c46a"></i> 放學時間</span>
+  </div>
+</section>
+
+<!-- 7. Cost -->
+<section id="cost">
+  <h2>💰 7. 費用試算</h2>
+  <table>
+    <thead><tr><th>範例</th><th>組合</th><th>合計</th></tr></thead>
+    <tbody>
+      <tr><td>A 均衡（推薦）</td><td class="left">#15 樂高(4,750) + #33 弦樂(5,200) + #2 直排輪(2,400) + #41 西洋棋(2,200)</td><td><strong>14,550</strong></td></tr>
+      <tr><td>B 含英語雙日</td><td class="left">#15 樂高(4,750) + #64 英語(7,850) + #2 直排輪(2,400) + #41 西洋棋(2,200)</td><td><strong>17,200</strong></td></tr>
+      <tr><td>C 純動 + 益智</td><td class="left">#2 直排輪(2,400) + #34 足球(2,850) + #7 象棋(2,100) + #41 西洋棋(2,200)</td><td><strong>9,550</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="alert">
+    📎 <strong>費用說明：</strong>三 A／五 A 段社團費用已內含午餐照顧費（525 / 425 元）；C 段、B 段社團<strong>不含</strong>午餐與課後照顧。課後照顧班（課輔 / 晚輔）費用另依校方收費，不在上表內。營養午餐費也要另訂另繳。
+  </div>
+</section>
+
+<!-- 8. Double-day -->
+<section id="double-day">
+  <h2>🤹 8. 雙日課特別說明（#64 英語）</h2>
+  <p>簡章把 #63、#64、#65 寫成「<strong>三五 A / B / C</strong>」，意思是<strong>一週上兩次</strong>，週三跟週五同一時段都要去。</p>
+
+  <table>
+    <thead><tr><th>項目</th><th>一般社團</th><th>雙日社團</th></tr></thead>
+    <tbody>
+      <tr><td>上課頻率</td><td>1 週 1 次</td><td><strong>1 週 2 次</strong></td></tr>
+      <tr><td>學期堂數</td><td>21 堂</td><td><strong>38 堂</strong></td></tr>
+      <tr><td>算幾個社團</td><td>1 個</td><td>1 個但佔 2 格</td></tr>
+      <tr><td>適用編號</td><td>#1~#62</td><td>#63 三五A、<strong>#64 三五B（孩子唯一可報）</strong>、#65 三五C</td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-info">
+    <strong>不能拆</strong>：不能說「我只想上週三那節」，<strong>一報就綁兩天</strong>。<br>
+    <strong>對 9 格的影響</strong>：報 #64 等於用 1 個社團名額消耗 2 格（三 B + 五 B），剩 7 格能放其他社團或課輔。
+  </div>
+</section>
+
+<!-- 9. English -->
+<section id="english">
+  <h2>🔤 9. 英語課深度分析</h2>
+
+  <h3>三門英語課對照</h3>
+  <table>
+    <thead><tr><th>編號</th><th>課程</th><th>師資</th><th>時段</th><th>招收</th><th>堂數</th><th>費用</th><th>每堂單價</th></tr></thead>
+    <tbody>
+      <tr><td>63</td><td class="left">英語進階字彙</td><td>胡心愛</td><td>三五 A</td><td>2-4 年級</td><td>38</td><td>8,750</td><td>~230</td></tr>
+      <tr class="pick-row"><td>64</td><td class="left">英語基礎字彙 ★</td><td>葉曉君</td><td>三五 B</td><td><strong>1-2 年級</strong></td><td>38</td><td>7,850</td><td>~207</td></tr>
+      <tr><td>65</td><td class="left">英語生活會話</td><td>葉曉君</td><td>三五 C</td><td>3-6 年級</td><td>38</td><td>7,850</td><td>~207</td></tr>
+    </tbody>
+  </table>
+
+  <h3>孩子只能報 #64</h3>
+  <ul>
+    <li>#63、#65 年級不符。<strong>#64 英語基礎字彙</strong>限 1-2 年級，小一不報只剩明年小二一次機會。</li>
+    <li>課程內容：字母大小寫發音 → 字彙 → 基礎句型（I/You/He/She 人稱變化），<strong>適合小一零基礎</strong>。</li>
+    <li>每堂單價 ~$207，跟其他社團（樂高 ~$226、合唱 ~$150）相比屬中段，<strong>不算貴</strong>。總額高只是因為堂數多。</li>
+  </ul>
+
+  <h3>辦課的協會背景</h3>
+  <ul>
+    <li>「ESL 臺灣兒童美語協會」應該就是 <strong>KEAT 台灣兒童美語協會</strong>（<a href="https://keat.org.tw/" target="_blank">keat.org.tw</a>），招牌方案叫「美國小學 ESL 美語村」（NCLB 計畫）。</li>
+    <li>在台灣經營國小社團十多年，<strong>近百所國小長期合作</strong>、每學期約 2,500 名學生。</li>
+    <li>教學模式：認證的兒美老師 + 電腦多媒體教材 + 投影機，小班制每班上限 20 人。</li>
+  </ul>
+
+  <div class="alert alert-danger">
+    <strong>⚠️ 教材費 4,900 疑點</strong><br>
+    協會官網寫課本+練習本一期約 700~1,100 元，智慧點讀筆 3,000 元（<strong>非必購</strong>）。但簡章 #64 寫「費用含教材及學習材料費 4,900 元」，比書本報價高一大截。<br>
+    <strong>建議報名前打 (02) 2311-0395 轉 827 問：「這 4,900 教材費包含什麼？是否把點讀筆綁進去了？」</strong>
+  </div>
+
+  <div class="alert">
+    <strong>網路上有評價嗎？</strong>沒有。針對「北市大附小這 3 門英語課」或這兩位老師（葉曉君、胡心愛）的家長評價，網路一片空白。國小課後社團規模小，通常不會有公開評價。
+    <strong>真實口碑只能靠：班上家長群組、學校課外組電話、自己到 BabyHome 發文。</strong>
+  </div>
+</section>
+
+<!-- 10. Phone script -->
+<section id="phone">
+  <h2>📞 10. 課外組電話腳本</h2>
+  <p>電話 <strong>(02) 2311-0395 轉 827 或 825</strong>（學務處課外活動組）。建議在報名前 1-2 天打。</p>
+
+  <div class="phone-script">
+    <p><span class="speaker">開場：</span>「您好，我是 115 學年小一新生家長，想請問幾個關於課後社團的問題：」</p>
+    <ol>
+      <li><strong>#64 英語基礎字彙（葉曉君老師）</strong>過去學期都有開班嗎？</li>
+      <li>這門課通常<strong>第一階段就額滿</strong>還是要到第二階段？</li>
+      <li>過去有<strong>候補名單</strong>嗎？大約多少人在候補？</li>
+      <li>葉曉君老師是不是<strong>長期合作的師資</strong>？教學評價如何？</li>
+      <li><strong>教材費 4,900 元包含哪些</strong>？（點讀筆是否含在內？）</li>
+      <li>（順便問）<strong>#15 樂高、#33 弦樂、#2 直排輪</strong>這幾個熱門社團，往年的報名搶手程度？</li>
+    </ol>
+  </div>
+
+  <div class="alert alert-good">
+    💡 這通電話除了拿到資料，也是觀察「<strong>課外組接電話人員的反應品質</strong>」的好機會 — 也是學校行政力的觀察指標。
+  </div>
+</section>
+
+<!-- 11. Kid talk -->
+<section id="kid-talk">
+  <h2>👧 11. 跟孩子的對話（分類選單）</h2>
+  <p>別一次丟 41 個讓她崩潰。先用大類問興趣方向，她圈完你再策略性挑。</p>
+
+  <h3>Step 1：分大類問興趣</h3>
+  <div class="category-grid">
+    <div class="category-card">
+      <div class="cat-title">🏃 跑跳運動</div>
+      <ul>
+        <li>#2 直排輪 ⭐</li>
+        <li>#9 跳繩-初階</li>
+        <li>#34/#49 樂活足球</li>
+        <li>#32/#59 羽球</li>
+      </ul>
+    </div>
+    <div class="category-card">
+      <div class="cat-title">🥋 武術防身</div>
+      <ul>
+        <li>#3/#38 國術</li>
+        <li>#18/#28/#48/#56 跆拳道</li>
+        <li>#37/#61 空手道</li>
+        <li>#36 空手道女子防身術</li>
+      </ul>
+    </div>
+    <div class="category-card">
+      <div class="cat-title">🤹 耍帥才藝</div>
+      <ul>
+        <li>#13/#24/#42/#51 扯鈴</li>
+        <li>#39 花式扯鈴</li>
+        <li>#11 魔術大師</li>
+      </ul>
+    </div>
+    <div class="category-card">
+      <div class="cat-title">💃 跳舞</div>
+      <ul>
+        <li>#14/#43 芭蕾舞</li>
+        <li>#50 MV 街舞</li>
+      </ul>
+    </div>
+    <div class="category-card">
+      <div class="cat-title">🎵 樂器／唱歌</div>
+      <ul>
+        <li>#5 合唱</li>
+        <li>#6 二胡</li>
+        <li>#33 弦樂 ⭐</li>
+      </ul>
+    </div>
+    <div class="category-card">
+      <div class="cat-title">🧠 動腦下棋</div>
+      <ul>
+        <li>#7 象棋</li>
+        <li>#41 西洋棋 ⭐</li>
+        <li>#46/#54 圍棋（啟蒙）</li>
+      </ul>
+    </div>
+    <div class="category-card">
+      <div class="cat-title">🧱 動手做／科學</div>
+      <ul>
+        <li>#15 科技磚樂高 EV3 ⭐</li>
+        <li>#26 STEM 創意科研社</li>
+        <li>#16/#44/#52 美術創作</li>
+      </ul>
+    </div>
+    <div class="category-card">
+      <div class="cat-title">🔤 英文</div>
+      <ul>
+        <li>#64 英語基礎字彙（雙日，限 1-2 年級）⭐</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Step 2：對話腳本</h3>
+  <div class="kid-dialog">
+    <strong>你：</strong>「妹妹，學校有很多放學後的活動，你想試試看哪一種？」<br>
+    <strong>第一輪問：</strong>「你想學<strong>動的</strong>（會流汗的）還是<strong>坐下來的</strong>？」<br>
+    <strong>第二輪問</strong>（依答案）：<br>
+    　・動的 → 「跑跑跳跳的（足球／跳繩）？打架架的（武術）？耍帥的（扯鈴／街舞）？還是滑滑的（直排輪）？」<br>
+    　・靜的 → 「畫畫做東西的（樂高／美術）？唱歌彈樂器的（合唱／弦樂）？下棋動腦的（西洋棋／圍棋）？還是學英文？」<br>
+    <strong>第三輪：</strong>「你想跟同學一起做什麼？有沒有哪個聽起來最好玩？」
+  </div>
+
+  <div class="kid-dialog">
+    <strong>💡 提示</strong>：讓她圈 <strong>5~8 個有興趣的</strong>，你再從她圈的裡面，套用「1 動 + 1 靜 + Stage-1 必搶 ⭐ 優先」原則挑出最終 4 個。
+  </div>
+</section>
+
+<!-- 12. Risk -->
+<section id="risk">
+  <h2>🚨 12. 風險與 Plan B</h2>
+  <h3>若必搶沒搶到怎麼辦？</h3>
   <table>
     <thead><tr><th>搶不到</th><th>立刻改搶（同性質替代）</th></tr></thead>
     <tbody>
-      <tr><td>三 A 樂高 ❌</td><td>三 A CM 魔法大師 / 五 A 圍棋 / 五 A 圍棋晉階</td></tr>
-      <tr><td>一 C 直排輪 ❌</td><td>二 C 跳繩初階 / 三 C 羽球 / 一 C 國術</td></tr>
-      <tr><td>雙雙失利</td><td>Stage-2 鎖 三 C 弦樂 + 四 C 西洋棋 當基本盤</td></tr>
+      <tr><td>#15 科技磚樂高 ❌</td><td class="left">#11 魔術大師（三 A，1-6，上限 20）／ #26 STEM 創意科研社（三 B，1-6，上限 20）</td></tr>
+      <tr><td>#2 直排輪 ❌</td><td class="left">#3 國術（一 C，1-6，上限 24）／ #9 跳繩-初階（二 C，1-6，上限 30）／ #34 樂活足球（三 C，1-4）</td></tr>
+      <tr><td>#33 弦樂 ❌</td><td class="left">#6 二胡（二 C，1-6，上限 10）／ #5 合唱（二 C，1-6，上限 30）</td></tr>
+      <tr><td>#64 英語 ❌</td><td class="left">沒有同類替代品（雙日課僅此一個適合小一）；或 6/26 起填候補表單</td></tr>
+      <tr><td>雙雙失利</td><td class="left">第二階段直接鎖 #41 西洋棋 + #11 魔術大師 當基本盤；或 6/26 起填候補</td></tr>
     </tbody>
   </table>
 
   <h3>🚦 第一學期觀察期 — 隨時可調整</h3>
   <div class="alert alert-danger">
     <strong>9 ~ 10 月密切觀察：</strong><br>
-    🔴 早上起不來、抗拒上學、頻繁喊累 → 立刻砍 1 個社團<br>
-    🟢 適應良好、回家有精神講今天上什麼 → 第二學期可加碼到 3-4 個
+    🔴 早上起不來、抗拒上學、頻繁喊累 → 立刻砍 1-2 個社團<br>
+    🟢 適應良好、回家有精神講今天上什麼 → 第二學期可加碼或維持
   </div>
 </section>
 
-<section>
-  <h2>✅ 開搶行動清單</h2>
+<!-- 13. Full list -->
+<section id="full-list">
+  <h2>📋 13. 孩子（小一）可報名社團全表 — 41 個</h2>
+  <p>以下為 115 學年度招收對象含 1 年級的社團，已排除年級不符者。★ 為本規劃推薦項目。</p>
+  <div class="timetable">
+    <table>
+      <thead>
+        <tr><th>編號</th><th>社團</th><th>教師</th><th>下限-上限</th><th>招收</th><th>費用</th><th>屬性</th></tr>
+      </thead>
+      <tbody>
+        <tr class="day-head"><td colspan="7">週一 C 段（16:10–17:40）</td></tr>
+        <tr class="pick-row"><td>2 ★</td><td class="left">直排輪</td><td>陳柏勳/杜之譽</td><td>16-24</td><td>1-6</td><td>2,400</td><td>🏃 動</td></tr>
+        <tr><td>3</td><td class="left">國術</td><td>林純緩/林志勳</td><td>16-24</td><td>1-6</td><td>2,850</td><td>🥋 動</td></tr>
+
+        <tr class="day-head"><td colspan="7">週二 C 段（16:10–17:40）</td></tr>
+        <tr><td>5</td><td class="left">合唱</td><td>鄭吟苓/劉皓宜</td><td>21-30</td><td>1-6</td><td>3,150</td><td>🎵 靜</td></tr>
+        <tr><td>6</td><td class="left">二胡</td><td>游淑惠</td><td>7-10</td><td>1-6</td><td>3,150</td><td>🎵 靜</td></tr>
+        <tr><td>7</td><td class="left">象棋</td><td>陳宜琳</td><td>11-16</td><td>1-5</td><td>2,100</td><td>♟️ 靜</td></tr>
+        <tr><td>9</td><td class="left">跳繩-初階</td><td>秦翊芳/韓聿淇</td><td>21-30</td><td>1-6</td><td>2,750</td><td>🏃 動</td></tr>
+
+        <tr class="day-head"><td colspan="7">週三 A 段（12:50–14:20，含午餐照顧）</td></tr>
+        <tr><td>11</td><td class="left">魔術大師</td><td>張凱安</td><td>14-20</td><td>1-6</td><td>3,100</td><td>🎩 靜</td></tr>
+        <tr><td>13</td><td class="left">扯鈴</td><td>張哲誠</td><td>10-15</td><td>1-6</td><td>3,400</td><td>🤹 動</td></tr>
+        <tr><td>14</td><td class="left">芭蕾舞</td><td>羅江佳琦</td><td>8-12</td><td>1-6</td><td>4,100</td><td>💃 動</td></tr>
+        <tr class="pick-row"><td>15 ★</td><td class="left">科技磚樂高 EV3</td><td>陳宗悅</td><td>14-20</td><td>1-3</td><td>4,750</td><td>🧱 靜</td></tr>
+        <tr><td>16</td><td class="left">美術創作</td><td>謝宜倖</td><td>11-16</td><td>1-3</td><td>3,750</td><td>🎨 靜</td></tr>
+        <tr><td>18</td><td class="left">跆拳道</td><td>陳彥霖</td><td>10-15</td><td>1-6</td><td>3,100</td><td>🥋 動</td></tr>
+
+        <tr class="day-head"><td colspan="7">週三 B 段（14:30–16:00）</td></tr>
+        <tr><td>24</td><td class="left">扯鈴</td><td>張哲誠</td><td>10-15</td><td>1-6</td><td>2,900</td><td>🤹 動</td></tr>
+        <tr><td>26</td><td class="left">STEM 創意科研社</td><td>廖震明</td><td>14-20</td><td>1-6</td><td>5,350</td><td>🔬 靜</td></tr>
+        <tr><td>28</td><td class="left">跆拳道</td><td>陳彥霖</td><td>10-15</td><td>1-6</td><td>2,550</td><td>🥋 動</td></tr>
+        <tr><td>29</td><td class="left">樂活足球（1-3 年級組）</td><td>陳蔚/洪楚航</td><td>10-15</td><td>1-6</td><td>2,650</td><td>⚽ 動</td></tr>
+
+        <tr class="day-head"><td colspan="7">週三 C 段（16:10–17:40）</td></tr>
+        <tr><td>32</td><td class="left">羽球</td><td>張哲誠</td><td>8-12</td><td>1-6</td><td>3,850</td><td>🏸 動</td></tr>
+        <tr class="pick-row"><td>33 ★</td><td class="left">弦樂</td><td>黃惠琪</td><td>7-10</td><td>1-6</td><td>5,200</td><td>🎻 靜</td></tr>
+        <tr><td>34</td><td class="left">樂活足球</td><td>洪楚航</td><td>10-15</td><td>1-4</td><td>2,850</td><td>⚽ 動</td></tr>
+
+        <tr class="day-head"><td colspan="7">週四 C 段（16:10–17:40）</td></tr>
+        <tr><td>36</td><td class="left">空手道女子防身術</td><td>蔡依玲</td><td>8-12</td><td>1-6 女優先</td><td>3,100</td><td>🥋 動</td></tr>
+        <tr><td>37</td><td class="left">空手道</td><td>許芃成/魏家勁</td><td>16-24</td><td>1-6</td><td>3,100</td><td>🥋 動</td></tr>
+        <tr><td>38</td><td class="left">國術</td><td>林純緩</td><td>8-12</td><td>1-6</td><td>3,300</td><td>🥋 動</td></tr>
+        <tr><td>39</td><td class="left">花式扯鈴</td><td>杜之譽/羅傑</td><td>16-24</td><td>1-6</td><td>2,400</td><td>🤹 動</td></tr>
+        <tr class="pick-row"><td>41 ★</td><td class="left">西洋棋</td><td>張惠靈</td><td>9-14</td><td>1-6</td><td>2,200</td><td>♟️ 靜</td></tr>
+
+        <tr class="day-head"><td colspan="7">週五 A 段（12:50–14:20，含午餐照顧）</td></tr>
+        <tr><td>42</td><td class="left">扯鈴</td><td>張哲誠</td><td>10-15</td><td>1-4</td><td>2,600</td><td>🤹 動</td></tr>
+        <tr><td>43</td><td class="left">芭蕾舞</td><td>羅江佳琦</td><td>8-12</td><td>1-4</td><td>3,100</td><td>💃 動</td></tr>
+        <tr><td>44</td><td class="left">美術創作</td><td>謝宜倖</td><td>11-16</td><td>1-4</td><td>3,000</td><td>🎨 靜</td></tr>
+        <tr><td>46</td><td class="left">圍棋（啟蒙）</td><td>蔡泰旭</td><td>10-15</td><td>1-4</td><td>2,700</td><td>⚫ 靜</td></tr>
+        <tr><td>47</td><td class="left">圍棋-進階班（需基礎）</td><td>施榮隆</td><td>11-16</td><td>1-4</td><td>2,950</td><td>⚫ 靜</td></tr>
+        <tr><td>48</td><td class="left">跆拳道</td><td>陳彥霖</td><td>10-15</td><td>1-4</td><td>2,400</td><td>🥋 動</td></tr>
+        <tr><td>49</td><td class="left">樂活足球</td><td>林煜閔</td><td>10-15</td><td>1-3</td><td>1,800</td><td>⚽ 動</td></tr>
+
+        <tr class="day-head"><td colspan="7">週五 B 段（14:30–16:00）</td></tr>
+        <tr><td>50</td><td class="left">MV 街舞</td><td>黃淑姿/許蕙貞</td><td>17-25</td><td>1-3</td><td>2,300</td><td>💃 動</td></tr>
+        <tr><td>51</td><td class="left">扯鈴</td><td>張哲誠</td><td>10-15</td><td>1-4</td><td>2,200</td><td>🤹 動</td></tr>
+        <tr><td>52</td><td class="left">美術創作</td><td>謝宜倖</td><td>11-16</td><td>1-4</td><td>2,600</td><td>🎨 靜</td></tr>
+        <tr><td>54</td><td class="left">圍棋（啟蒙）</td><td>蔡泰旭</td><td>10-15</td><td>1-4</td><td>2,300</td><td>⚫ 靜</td></tr>
+        <tr><td>55</td><td class="left">圍棋-中級班（需基礎）</td><td>施榮隆</td><td>11-16</td><td>1-4</td><td>2,550</td><td>⚫ 靜</td></tr>
+        <tr><td>56</td><td class="left">跆拳道</td><td>陳彥霖</td><td>10-15</td><td>1-4</td><td>2,050</td><td>🥋 動</td></tr>
+
+        <tr class="day-head"><td colspan="7">週五 C 段（16:10–17:40）</td></tr>
+        <tr><td>59</td><td class="left">羽球</td><td>張哲誠/郭文傑</td><td>16-24</td><td>1-6</td><td>2,500</td><td>🏸 動</td></tr>
+        <tr><td>61</td><td class="left">空手道</td><td>許芃成/魏家勁</td><td>16-24</td><td>1-6</td><td>2,900</td><td>🥋 動</td></tr>
+        <tr><td>62</td><td class="left">圍棋-精英班（需中高階）</td><td>施榮隆</td><td>11-16</td><td>1-6</td><td>2,550</td><td>⚫ 靜</td></tr>
+
+        <tr class="day-head"><td colspan="7">週三 + 週五 B 段（雙日，38 堂）</td></tr>
+        <tr class="pick-row"><td>64 ★</td><td class="left">英語基礎字彙</td><td>葉曉君</td><td>15-22</td><td>1-2</td><td>7,850</td><td>🔤 語文</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 14. Not eligible -->
+<section id="not-eligible">
+  <h2>🚫 14. 孩子不可報名社團（年級不符）— 23 個</h2>
+  <details open>
+    <summary>展開／收合不可報清單</summary>
+    <div class="detail-body">
+      <p>下列社團 115 學年度招收對象不含 1 年級，孩子無法報名：</p>
+      <ul>
+        <li>#1 羽球（一C，4-6）、#4 跳繩（一C，2-6）</li>
+        <li>#8 樂樂棒球（二C，4-6）、#10 花式跳繩（二C，限跳繩隊）</li>
+        <li>#12 建築宇宙（三A，3-6）、#17 射箭（三A，4-6）、#19 歌舞劇（三A，3-6）、#20 樂活足球（三A，4-6）、#21 籃球（三A，4-6）</li>
+        <li>#22 MV街舞（三B，4-6）、#23 科技磚樂高（三B，4-6）、#25 美術創作（三B，4-6）、#27 射箭（三B，4-6）、#31 籃球（三B，4-6）</li>
+        <li>#35 飛盤（三C，3-4）、#40 頑建築（四C，3-6）</li>
+        <li>#45 創意捏塑（五A，2-4）、#53 創意捏塑（五B，2-4）、#57 書法（五B，2-4）、#58 田徑（五C，4-6）、#60 書法（五C，3-6）</li>
+        <li>#63 英語進階字彙（三五A，2-4）、#65 英語生活會話（三五C，3-6）</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- 15. Action -->
+<section id="action">
+  <h2>✅ 15. 開搶行動清單</h2>
   <ol class="checklist">
-    <li><span class="date">8/25 ~ 9/1</span>登入 ecampus 確認 115-1 系統開放、確認小一新生帳號可登入（身分證號碼為預設帳密）</li>
-    <li><span class="date">12 月中</span>等學校公告 Stage-1 開搶時間（依 114 學年慣例為 12/22 晚 21:00）</li>
-    <li><span class="date">開搶前 30 分</span>登入系統、把「三 A 樂高 EV3」和「一 C 直排輪」頁面預先打開兩個瀏覽器分頁</li>
-    <li><span class="date">21:00 整</span>手機 + 電腦同時開兩個分頁，倒數秒針一到立刻送出（差 2 秒就可能被刷掉）</li>
-    <li><span class="date">12/24 ~ 12/29</span>Stage-2 登入看剩下名單，撿 1 個 C 段冷門靜態社團（弦樂 / 西洋棋優先）</li>
-    <li><span class="date">1/6 ~ 1/12</span>繳費期限（逾期視同放棄報名，無法挽回）</li>
+    <li><span class="date">即日 ~ 6/8</span>跟孩子坐下來用「分類選單」(§11) 圈她有興趣的 5~8 個，套策略框架挑出最終 4 個。</li>
+    <li><span class="date">即日 ~ 6/8</span>打 (02) 2311-0395 轉 827 用電話腳本 (§10) 詢問熱門社團報名狀況、教材費明細。</li>
+    <li><span class="date">即日 ~ 6/8</span>登入 ecampus 確認小一新生帳號可登入（預設帳密為身分證號碼），同時準備 6/9 起的課後照顧班報名。</li>
+    <li><span class="date">6/9 二 20:30</span>開搶前 30 分登入系統，預先打開「Stage-1 必搶 2 個」社團頁面分頁。</li>
+    <li><span class="date">6/9 二 21:00 整</span>第一階段開放，手機 ＋ 電腦同時待命，時間一到立刻送出 2 項（依報名先後順序錄取，越早送越穩）。</li>
+    <li><span class="date">6/11 四 20:59 前</span>第一階段截止，確認 2 項社團都已成功報名。</li>
+    <li><span class="date">6/12 四 21:00 ~ 6/18</span>第二階段開放，補報第 3、第 4 個社團（從 §5 第二階段候選池挑）。</li>
+    <li><span class="date">6/22 一</span>看學校首頁公告，確認報名的社團都有達到開班下限（未達下限會停開）。</li>
+    <li><span class="date">6/25 四 ~ 7/3 五</span>繳費期限。<strong>小一新生家長到課外組領紙本繳費單</strong>，逾期未繳視同放棄。</li>
+    <li><span class="date">6/26 五 21:00 起</span>若有社團沒搶到或停開，至學校首頁填寫候補 Google 表單（每項社團各填一份）。7/15 起留意候補通知。</li>
+    <li><span class="date">9 ~ 10 月</span>觀察期，依孩子適應狀況決定第二學期加減社團。</li>
   </ol>
 </section>
 
-<section>
-  <h2>📊 系統重要數據參考</h2>
+<!-- 16. Data -->
+<section id="data">
+  <h2>📊 16. 系統重要數據</h2>
   <ul>
-    <li><strong>小一可選社團總數</strong>：42 個（114-2 實際開課）</li>
-    <li><strong>放學時間</strong>：A 段 14:20 / B 段 16:00 / <strong>C 段 17:40</strong> / <strong>晚輔 17:50</strong></li>
-    <li><strong>聯絡電話</strong>：(02) 2311-0395 轉 825 或 827（學務處課外活動組）</li>
-    <li><strong>報名系統</strong>：<a href="https://ecampus.com.tw/Index/AnnShow/16" target="_blank">ecampus.com.tw</a></li>
+    <li><strong>115-1 課後社團總數</strong>：65 個編號（其中 #29／#30 為同一社團按年級分組），共 64 個社團。</li>
+    <li><strong>孩子（小一）可報名</strong>：41 個；年級不符無法報名：23 個。</li>
+    <li><strong>時段</strong>：A 段 12:50–14:20（午餐後）／ B 段 14:30–16:00 ／ C 段 16:10–17:40。</li>
+    <li><strong>放學時間</strong>：C 段約 17:40 ／ 晚輔約 17:50（依各日安排）。</li>
+    <li><strong>聯絡電話</strong>：(02) 2311-0395 轉 827 或 825（學務處課外活動組）。</li>
+    <li><strong>報名系統</strong>：學校首頁 →【學生專區】→【學務處相關報名與繳費系統】。</li>
+    <li><strong>ecampus 公告頁</strong>：<a href="https://ecampus.com.tw/Index/AnnShow/16" target="_blank">ecampus.com.tw/Index/AnnShow/16</a></li>
+    <li><strong>學校官網</strong>：<a href="https://www.esut.tp.edu.tw/" target="_blank">esut.tp.edu.tw</a></li>
+    <li><strong>學校信箱</strong>：contact@esut.tp.edu.tw</li>
+    <li><strong>協會官網（英語課提供方）</strong>：<a href="https://keat.org.tw/" target="_blank">keat.org.tw（KEAT 台灣兒童美語協會）</a></li>
   </ul>
 </section>
 
 <footer>
-  <p>本規劃以 114-2 學期真實報名數據為基礎，115-1 可能略有變動，請以學校最新公告為準。</p>
-  <p>製作日期：2026 / 05 · 為 巫家小一新生量身打造 🐣</p>
+  <p>本規劃依「臺北市立大學附設實驗國民小學 115 學年度第 1 學期課後照顧班及課後社團簡章」整理（學校公告 2026/05/21 更新）。實際開班與名額以學校最新公告為準。</p>
+  <p>最後更新：2026 / 05 / 25 · 為 巫家小一新生量身打造 🐣</p>
 </footer>
 
 </div>
